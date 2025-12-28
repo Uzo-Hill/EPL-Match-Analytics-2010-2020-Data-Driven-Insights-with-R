@@ -1,4 +1,7 @@
 # EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R
+---
+![](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/Logo.PNG)
+
 A data science project in R analyzing 10 seasons of English Premier League match data to explore team performance trends, discipline patterns, and referee tendencies through modern football analytics.
 
 ---
@@ -136,6 +139,59 @@ team_performance <- bind_rows(home_team_data, away_team_data) %>%
     Draw = ifelse(Points == 1, 1, 0),
     Loss = ifelse(Points == 0, 1, 0)
   )
+
+#  GOALS ANALYSIS: SCORED VS CONCEDED
+goals_analysis <- team_performance %>%
+  group_by(Team) %>%
+  summarise(
+    GoalsScored = sum(Goals),
+    GoalsConceded = sum(GoalsConceded),
+    GoalDifference = GoalsScored - GoalsConceded,
+    .groups = 'drop'
+  ) %>%
+  filter(Team %in% top_teams$Team)
+
+
+goals_analysis_sorted <- goals_analysis %>%
+  arrange(desc(GoalsScored))
+
+away_wins <- team_performance %>%
+  filter(Venue == "Away") %>%  # Focus only on away matches
+  group_by(Team) %>%
+  summarise(
+    AwayMatches = n(),
+    AwayWins = sum(Win),  # Count wins
+    AwayDraws = sum(Draw),
+    AwayLosses = sum(Loss),
+    AwayPoints = sum(Points),
+    AwayWinRate = (AwayWins / AwayMatches) * 100,
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(AwayWins))
+
+referee_analysis <- epl_data %>%
+  group_by(Referee) %>%
+  summarise(
+    Total_Matches = n(),
+    Avg_Total_Cards = mean(TotalCards, na.rm = TRUE),
+    Avg_Total_Fouls = mean(HomeFouls + AwayFouls, na.rm = TRUE),
+    Avg_Total_Goals = mean(TotalGoals, na.rm = TRUE),
+    Avg_Home_Yellows = mean(HomeYellowCards, na.rm = TRUE),
+    Avg_Away_Yellows = mean(AwayYellowCards, na.rm = TRUE),
+    Total_Red_Cards = sum(HomeRedCards + AwayRedCards, na.rm = TRUE),
+    Home_Win_Rate = mean(Result == "H", na.rm = TRUE) * 100,
+    Draw_Rate = mean(Result == "D", na.rm = TRUE) * 100,
+    Away_Win_Rate = mean(Result == "A", na.rm = TRUE) * 100,
+    Avg_Competitiveness = mean(CompetitivenessIndex, na.rm = TRUE),
+    Avg_Shots = mean(TotalShots, na.rm = TRUE)
+  ) %>%
+  filter(Total_Matches >= 10) %>%
+  mutate(
+    Cards_per_Foul = Avg_Total_Cards / Avg_Total_Fouls,
+    Strictness_Score = Avg_Total_Cards * 0.6 + Avg_Total_Fouls * 0.4,
+    Yellow_Card_Bias = Avg_Home_Yellows - Avg_Away_Yellows
+  ) %>%
+  arrange(desc(Total_Matches))
 ```
 
 ---
