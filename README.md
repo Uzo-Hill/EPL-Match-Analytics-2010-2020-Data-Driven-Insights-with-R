@@ -119,6 +119,66 @@ epl_data <- epl_data %>%
 
 *![Goal Dfference](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/project%20images/GoalsDifference.PNG)*
 
+---
+### Match Outcome Distribution
+- Home wins, away wins, and draws visualized using donut chart
+- Clear evidence of sustained home advantage
+
+*![Match Outcome Distribution](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/project%20images/DistributionMatchResults.PNG)*
+
+---
+
+### Seasonal Trends
+- Points progression for top 5 teams across seasons
+- Identifies consistency, dominance, and performance dips.
+
+*![Match Outcome Distribution](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/project%20images/SeasonTrend.PNG)*
+
+---
+### Home vs Away Performance
+- Away win rates and away dominance comparison
+- Highlights why elite teams succeed beyond home advantage
+
+*![Most Away Win](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/project%20images/MostAwayWins.PNG)*
+
+
+*![Least Away Win](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/project%20images/LeastAwayWins.PNG)*
+
+---
+### Referee Analytics
+- Referee strictness based on average cards per match
+- Matches officiated by referee
+- Team-level disciplinary behavior across seasons
+
+*![Referee Average Cards Per Match](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/project%20images/RefereeCardsPerMatch.PNG)*
+
+
+*![Referee Matches Officiated--](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/project%20images/RefereeMatchesOfficiated.PNG)*
+
+
+*![Team Card Per Season--](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/project%20images/TeamCardsPerSeason.PNG)*
+
+---
+## Key Insights
+- Home advantage remains significant, accounting for ~46% of match wins compared to just 28.7% away wins.
+- Manchester City dominated the decade in points, goals, home and away wins.
+- Goal difference strongly separates elite and mid-table teams, goal differences exceeding +300 over the decade for the top 5, with Manchester City leading at +522.
+- Referee strictness varies significantly, with some averaging 3.5+ cards per match.
+
+---
+## Project Summary
+This project demonstrates how data science and R can be applied to football analytics by transforming raw EPL match data into actionable insights. Through structured analysis and clear visualization, the project bridges match statistics and strategic football intelligence.
+
+---
+## Author
+- Uzoh C. Hillary
+- Data Scientist | Sports Analytics Enthusiast
+- LinkedIn: [LinkedIn](http://www.linkedin.com/in/hillaryuzoh)
+
+
+
+
+
 
 
 
