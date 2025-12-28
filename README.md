@@ -103,15 +103,21 @@ epl_data <- epl_data %>%
 ---
 ## Key Analyses & Visualizations
 
+### Team Performance
+- Top teams ranked by total points (10 seasons combined)
+
+- Goal scored vs conceded analysis
+
+- Goal difference as a performance separator
+
+*![Games points by Team](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/project%20images/PointsByTeam.PNG)*
+
+
+*![Goals Analysis](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/project%20images/GoalsPerformance.PNG)*
 
 
 
-
-
-
-
-
-
+*![Goal Dfference](https://github.com/Uzo-Hill/EPL-Match-Analytics-2010-2020-Data-Driven-Insights-with-R/blob/main/project%20images/GoalsDifference.PNG)*
 
 
 
