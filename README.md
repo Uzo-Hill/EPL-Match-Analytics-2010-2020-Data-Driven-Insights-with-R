@@ -54,7 +54,7 @@ library(knitr)          # Report generation
 ```
 
 ---
-## Data Preparation
+## Data Preparation and Transformation
 Key preprocessing steps included:
 - Date parsing and feature extraction (season, month, year)
 - Creation of advanced match metrics:
@@ -97,6 +97,44 @@ epl_data <- epl_data %>%
     
     # Match competitiveness (closer games have lower values)
     CompetitivenessIndex = abs(HomeGoals - AwayGoals)
+  )
+
+home_team_data <- epl_data %>%
+  select(Season, Date, Team = HomeTeam, Opponent = AwayTeam, 
+         Goals = HomeGoals, GoalsConceded = AwayGoals,
+         Shots = HomeShots, ShotsOnTarget = HomeShotsOnTarget,
+         Corners = HomeCorners, Fouls = HomeFouls,
+         YellowCards = HomeYellowCards, RedCards = HomeRedCards,
+         ConversionRate = HomeConversionRate,
+         ShotAccuracy = HomeShotAccuracy,
+         Result = FullTime) %>%
+  mutate(Venue = "Home")
+
+
+away_team_data <- epl_data %>%
+  select(Season, Date, Team = AwayTeam, Opponent = HomeTeam,
+         Goals = AwayGoals, GoalsConceded = HomeGoals,
+         Shots = AwayShots, ShotsOnTarget = AwayShotsOnTarget,
+         Corners = AwayCorners, Fouls = AwayFouls,
+         YellowCards = AwayYellowCards, RedCards = AwayRedCards,
+         ConversionRate = AwayConversionRate,
+         ShotAccuracy = AwayShotAccuracy,
+         Result = FullTime) %>%
+  mutate(Venue = "Away")
+
+
+# Team performance analysis
+team_performance <- bind_rows(home_team_data, away_team_data) %>%
+  mutate(
+    Points = case_when(
+      (Venue == "Home" & Result == "HomeWin") ~ 3,
+      (Venue == "Away" & Result == "AwayWin") ~ 3,
+      Result == "Draw" ~ 1,
+      TRUE ~ 0
+    ),
+    Win = ifelse(Points == 3, 1, 0),
+    Draw = ifelse(Points == 1, 1, 0),
+    Loss = ifelse(Points == 0, 1, 0)
   )
 ```
 
